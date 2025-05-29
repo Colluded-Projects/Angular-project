@@ -5,7 +5,6 @@ angular.module('blogVibeApp') // Assumes 'blogVibeApp' is defined in app.js and 
     $scope.navItems = [
         { id: "home", name: "Home", link: "index.html" },
         { id: "blog", name: "Blog", link: "blog.html" },
-        { id: "trending", name: "Trending", link: "trending.html" },
         { id: "about", name: "About", link: "about.html" },
         { id: "team", name: "Team", link: "team.html" },
         { id: "contact", name: "Contact", link: "contact.html" }
