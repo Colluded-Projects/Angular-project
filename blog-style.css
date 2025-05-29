@@ -1,0 +1,218 @@
+/* blog-style.css */
+
+/* Blog Page Header */
+.blog-header {
+    text-align: center;
+    padding: 40px 0;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 40px;
+}
+.blog-header h1 {
+    font-size: 2.8rem;
+    color: #2D3748;
+    margin-bottom: 10px;
+}
+.blog-header p.subtitle {
+    font-size: 1.15rem;
+    color: #4A5568;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Filters Toolbar */
+.blog-filters-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 12px 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.filter-buttons button {
+    background-color: transparent;
+    border: 2px solid transparent;
+    color: #4A5568;
+    padding: 8px 18px;
+    margin-right: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.filter-buttons button:last-child { margin-right: 0; }
+.filter-buttons button:hover { color: #5D3FD3; background-color: #f0eaff; }
+.filter-buttons button.active {
+    background-color: #5D3FD3; color: #fff; border-color: #5D3FD3; font-weight: 600;
+}
+.sort-dropdown label {
+    margin-right: 10px; font-size: 0.95rem; color: #4A5568; font-weight: 500;
+}
+.sort-dropdown select {
+    padding: 10px 12px; border-radius: 6px; border: 1px solid #cbd5e0;
+    background-color: #fff; color: #4A5568; font-weight: 500; cursor: pointer;
+}
+.sort-dropdown select:focus {
+    outline: none; border-color: #5D3FD3;
+    box-shadow: 0 0 0 3px rgba(93, 63, 211, 0.15);
+}
+
+/* Blog Layout (Main content and Sidebar) */
+.blog-layout {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 50px;
+}
+
+/* Container for the list of blog posts */
+.blog-posts-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    gap: 35px;
+    /* THIS IS CRUCIAL FOR EQUAL HEIGHT CARDS IN THE SAME ROW */
+    align-items: stretch; 
+}
+
+/* Individual Blog Card Styling on Blog Page */
+.article-card.blog-page-card {
+    display: flex; /* Allows children to use flex properties for height distribution */
+    flex-direction: column; /* Stack image, content, meta vertically */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    overflow: hidden; /* Good practice for rounded corners and containing elements */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    /* The height of the card itself will be determined by the grid row (due to align-items: stretch) */
+}
+.article-card.blog-page-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 14px 35px rgba(93, 63, 211, 0.15);
+}
+
+.blog-card-image {
+    width: 100%;
+    height: 230px; /* Fixed height helps in visual consistency */
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.article-page-tag {
+    position: absolute; top: 18px; left: 18px; z-index: 1;
+    background-color: #5D3FD3; color: white; padding: 6px 14px;
+    border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.article-card.blog-page-card .article-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* THIS IS CRUCIAL: makes the content area expand to fill the card's stretched height */
+}
+
+.clickable-title {
+    cursor: pointer; font-size: 1.4rem; color: #2D3748;
+    margin-bottom: 12px; line-height: 1.35; font-weight: 700;
+    transition: color 0.2s ease-in-out;
+}
+.clickable-title:hover { color: #5D3FD3; }
+
+/* Description paragraph */
+.article-card.blog-page-card .article-content p {
+    color: #4A5568;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.65;
+    /* flex-grow: 1; was removed from here, which is correct. 
+       The .article-content's flex-grow is what matters for overall card height filling. */
+}
+
+.blog-page-meta {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: #718096; border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+    margin-top: auto; /* Pushes meta to the bottom of the .article-content flex container */
+}
+.blog-page-meta span {
+    margin-right: 12px; margin-bottom: 5px; display: inline-flex; align-items: center; white-space: nowrap;
+}
+.blog-page-meta span:last-child { margin-right: 0; }
+.views-icon { margin-right: 5px; font-size: 1em; color: #A0AEC0; }
+
+.no-posts-message {
+    padding: 30px 20px; text-align: center; color: #718096; background-color: #fff;
+    border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    grid-column: 1 / -1; font-size: 1.05rem;
+}
+
+/* Sidebar Styling */
+.blog-sidebar { }
+.sidebar-widget {
+    background-color: #fff; padding: 25px; border-radius: 10px;
+    margin-bottom: 35px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.sidebar-widget h4 {
+    font-size: 1.25rem; color: #2D3748; margin-top: 0; margin-bottom: 18px;
+    padding-bottom: 12px; border-bottom: 2px solid #5D3FD3; display: inline-block;
+}
+.sidebar-widget ul { list-style: none; padding: 0; margin: 0; }
+.sidebar-widget ul li { margin-bottom: 14px; font-size: 0.95rem; }
+.sidebar-widget ul li:last-child { margin-bottom: 0; }
+.sidebar-widget ul li a { color: #5D3FD3; text-decoration: none; font-weight: 500; transition: color 0.2s, padding-left 0.2s ease; }
+.sidebar-widget ul li a:hover { color: #4a2fa3; padding-left: 5px; }
+.sidebar-widget ul li span { display: block; font-size: 0.85rem; color: #718096; margin-top: 3px; }
+.sidebar-widget ul li.category-item, .sidebar-widget ul li.recent-post-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px dashed #e2e8f0;
+}
+.sidebar-widget ul li.category-item:last-child, .sidebar-widget ul li.recent-post-item:last-child { border-bottom: none; }
+.sidebar-widget ul li.recent-post-item a { flex-grow: 1; margin-right: 10px; }
+.sidebar-widget ul li.recent-post-item span { text-align: right; white-space: nowrap; margin-top: 0; }
+
+.popular-tags .tag-chip {
+    display: inline-block; background-color: #eef2ff; color: #5D3FD3;
+    padding: 6px 14px; border-radius: 18px; font-size: 0.85rem; font-weight: 500;
+    margin-right: 8px; margin-bottom: 10px; cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s ease;
+}
+.popular-tags .tag-chip:hover { background-color: #5D3FD3; color: #fff; transform: translateY(-2px); }
+
+/* Pagination Styling */
+.pagination {
+    margin-top: 50px; margin-bottom: 60px; grid-column: 1 / -1;
+    display: flex; justify-content: center; align-items: center;
+}
+.pagination ul { list-style: none; padding: 0; margin: 0; display: flex; }
+.pagination ul li { display: inline; margin: 0 4px; }
+.pagination ul li button {
+    background-color: #fff; border: 1px solid #cbd5e0; color: #5D3FD3;
+    padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s ease;
+    min-width: 40px; text-align: center;
+}
+.pagination ul li button:hover:not([disabled]), .pagination ul li button.active {
+    background-color: #5D3FD3; color: #fff; border-color: #5D3FD3;
+    box-shadow: 0 2px 8px rgba(93, 63, 211, 0.3);
+}
+.pagination ul li button.active { font-weight: 700; }
+.pagination ul li button[disabled] {
+    color: #adb5bd; background-color: #f8f9fa; border-color: #e9ecef; cursor: not-allowed;
+}
+
+/* Responsive adjustments for Blog Page */
+@media (max-width: 992px) {
+    .blog-layout { grid-template-columns: 1fr; }
+    .blog-sidebar { margin-top: 50px; border-left: none; padding-left: 0; }
+}
+@media (max-width: 768px) {
+    .blog-filters-toolbar { flex-direction: column; align-items: stretch; gap: 15px; }
+    .filter-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .filter-buttons button { margin-right: 0; }
+    .sort-dropdown { text-align: center; }
+    .blog-posts-list { grid-template-columns: 1fr; gap: 30px; }
+    .blog-page-meta span { font-size: 0.75rem; margin-right: 8px; }
+}

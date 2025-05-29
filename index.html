@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="blogVibeApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogVibe</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="MainController">
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">{{ logo.textPart1 }}<span>{{ logo.textPart2 }}</span></a>
+            <nav> 
+                <ul>
+                    <li ng-repeat="item in navItems">
+                        <a ng-href="{{ item.link }}">{{ item.name }}</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="search-icon">
+                <a href="#">&#128269;</a> </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content-grid">
+            <div class="hero-text">
+                <h1>{{ hero.titleLine1 }} <span class="highlight">{{ hero.titleHighlight }}</span> {{ hero.titleLine2 }}</h1>
+                <p>{{ hero.subtitle }}</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" ng-click="logAction('Start Reading clicked')">{{ hero.buttons.startReading }} &rarr;</a>
+                    <a href="#" class="btn btn-secondary" ng-click="logAction('Browse Topics clicked')">{{ hero.buttons.browseTopics }}</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="assets/360_F_421210643_TxH172DOcu4pJFGWinEe5of3jWs98sPS.webp" alt="Coding on Laptop" class="hero-main-image">
+                <div class="stat-box stat-readers">
+                    <strong>{{ hero.stats.monthlyReaders }}k+</strong>
+                    <span>Monthly Readers</span>
+                </div>
+                <div class="stat-box stat-articles">
+                    <strong>{{ hero.stats.articlesPublished }}+</strong>
+                    <span>Articles Published</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-stories">
+        <div class="container">
+            <h2>{{ featured.title }}</h2>
+            <p class="featured-subtitle">{{ featured.subtitle }}</p>
+            <div class="articles-grid">
+                <div class="article-card" ng-repeat="article in featured.articles">
+                    <img ng-src="{{ article.image }}" alt="{{ article.title }}">
+                    <div class="article-content">
+                        <span class="category-tag">{{ article.category }}</span>
+                        <h3>{{ article.title }}</h3>
+                        <p>{{ article.description }}</p>
+                        <div class="article-meta">
+                            <span>{{ article.readTime }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-posts">
+                <a href="#" class="btn btn-secondary" ng-click="logAction('View All Posts clicked')">{{ featured.viewAllButton }} &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+  <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="index.html" class="logo">{{ logo.textPart1 }}<span>{{ logo.textPart2 }}</span></a>
+                <p>{{ footer.description }}</p>
+                <div class="social-icons">
+                    <a ng-repeat="icon in footer.socialMediaLinks" href="{{ icon.link }}" title="{{ icon.name }}">{{ icon.char }}</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>{{ footer.quickLinks.title }}</h4>
+                <ul>
+                    <li ng-repeat="link in footer.quickLinks.links"><a ng-href="{{ link.href }}">{{ link.name }}</a></li>
+                </ul>
+            </div>
+            <div class="footer-categories"> <h4>{{ footer.categoriesLinks.title }}</h4>
+                <ul>
+                    <li ng-repeat="category in footer.categoriesLinks.items"><a href="#">{{ category }}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span ng-bind="currentYear"></span> {{ logo.textPart1 }}{{ logo.textPart2 }}. All rights reserved.</p>
+            <div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

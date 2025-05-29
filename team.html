@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - BlogVibe</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.7;
+            color: #4A5568;
+            background-color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            padding-top: 0px;
+            padding-right: 20px;
+            padding-bottom: 0px;
+            padding-left: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5D3FD3;
+            transition-property: color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+        }
+
+        a:hover {
+            color: #4a2fa3;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 12px; 
+            color: #2D3748;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 45px; 
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px; 
+        }
+
+        h3 {
+            font-size: 24px; 
+            color: #4A5568;
+        }
+
+        p {
+            margin-bottom: 19px; 
+            color: #4A5568;
+            font-size: 16px;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding-top: 15px;
+            padding-right: 0px;
+            padding-bottom: 15px;
+            padding-left: 0px;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: bold;
+            color: #5D3FD3;
+        }
+
+        .logo span {
+            color: #2D3748;
+        }
+
+        .navbar nav ul {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar nav ul li {
+            margin-left: 30px;
+        }
+
+        .navbar nav ul li a {
+            color: #4A5568;
+            font-weight: 500;
+            padding-top: 10px;
+            padding-right: 0px;
+            padding-bottom: 10px;
+            padding-left: 0px;
+            text-decoration: none;
+            display: block;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            transition-property: color, border-bottom-color;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+        }
+
+        .navbar nav ul li a:hover {
+            color: #5D3FD3;
+            border-bottom-color: #5D3FD3;
+        }
+
+        .navbar nav ul li a.active {
+            color: #5D3FD3;
+            font-weight: 700;
+            border-bottom-color: #5D3FD3;
+        }
+
+        .search-icon a {
+            font-size: 19px;
+            color: #4A5568;
+        }
+
+        .team-page-main {
+            flex-grow: 1;
+            padding-top: 50px;
+            padding-right: 0px;
+            padding-bottom: 80px;
+            padding-left: 0px;
+        }
+
+        .page-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 50px;
+            padding-right: 20px;
+            padding-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .page-hero h1 {
+            color: #2D3748;
+            font-size: 48px; 
+            margin-bottom: 5px; /* Approx 0.3em */
+        }
+
+        .page-hero p.subtitle {
+            font-size: 19px; /* Approx 1.2rem */
+            color: #718096;
+            max-width: 700px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 16px; /* Approx 1em */
+            margin-left: auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Explicitly two columns */
+            gap: 40px;
+            max-width: 900px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+        }
+
+        .team-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
+            padding-top: 30px;
+            padding-right: 30px;
+            padding-bottom: 30px;
+            padding-left: 30px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+        }
+
+        .card-image-placeholder {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%; /* Makes it a circle */
+            background-color: #e2e8f0;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 20px;
+            margin-left: auto;
+            overflow: hidden;
+            border-width: 4px;
+            border-style: solid;
+            border-color: #ffffff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px; /* Approx 0.8em */
+            color: #718096;
+        }
+
+        .card-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0px; /* Image is clipped by parent's border-radius */
+        }
+
+        .member-name {
+            font-size: 26px; /* Approx 1.6rem */
+            color: #5D3FD3;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .member-role {
+            font-size: 16px; /* Approx 1rem */
+            color: #2D3748;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .member-details {
+            font-size: 14px; /* Approx 0.9rem */
+            color: #718096;
+            line-height: 1.5;
+        }
+        
+        .member-specialty {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0c5984;
+            padding-top: 5px;
+            padding-right: 12px;
+            padding-bottom: 5px;
+            padding-left: 12px;
+            border-radius: 15px;
+            font-size: 13px; /* Approx 0.8rem */
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .footer {
+            background-color: #1A202C;
+            color: #A0AEC0;
+            padding-top: 60px;
+            padding-right: 0px;
+            padding-bottom: 20px;
+            padding-left: 0px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Start with 3 columns */
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about .logo {
+            color: #ffffff;
+        }
+
+        .footer-about .logo span {
+            color: #718096;
+        }
+
+        .footer-about p {
+            font-size: 14px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .social-icons a {
+            color: #A0AEC0;
+            margin-right: 18px;
+            font-size: 24px;
+            transition-property: color, transform;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+        }
+        .social-icons a:last-child {
+             margin-right: 0px;
+        }
+
+        .social-icons a:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .footer h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #CBD5E0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links ul li,
+        .footer-categories ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a,
+        .footer-categories ul li a {
+            color: #A0AEC0;
+            font-size: 15px;
+            transition-property: color, padding-left;
+            transition-duration: 0.2s;
+            transition-timing-function: ease;
+        }
+
+        .footer-links ul li a:hover,
+        .footer-categories ul li a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #2D3748;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0px;
+        }
+
+        .footer-bottom div a {
+            margin-left: 25px;
+            color: #A0AEC0;
+        }
+
+        .footer-bottom div a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 992px) { /* For tablet screens */
+             .footer-grid {
+                grid-template-columns: 1fr 1fr; /* Footer becomes 2 columns */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+            }
+            .navbar nav {
+                margin-top: 15px;
+            }
+            .navbar nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .navbar nav ul li {
+                margin-top: 5px;
+                margin-right: 12px;
+                margin-bottom: 5px;
+                margin-left: 12px;
+            }
+
+            .page-hero h1 {
+                font-size: 35px; /* Approx 2.2rem */
+            }
+            .page-hero p.subtitle {
+                font-size: 17px; /* Approx 1.05rem */
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr; /* Stack cards to 1 column */
+                gap: 30px;
+                padding-top: 0px;
+                padding-right: 10px;
+                padding-bottom: 0px;
+                padding-left: 10px;
+            }
+            .card-image-placeholder {
+                width: 100px;
+                height: 100px;
+            }
+            .member-name {
+                font-size: 22px; /* Approx 1.4rem */
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr; /* Footer becomes 1 column */
+                text-align: center;
+            }
+            .footer-about p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .social-icons {
+                justify-content: center;
+                display: flex;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-bottom div {
+                margin-top: 15px;
+            }
+            .footer-bottom div a {
+                margin-top: 0px;
+                margin-right: 12px;
+                margin-bottom: 0px;
+                margin-left: 12px;
+            }
+        }
+         @media (max-width: 480px) {
+            .team-grid {
+                padding-top: 0px;
+                padding-right: 0px;
+                padding-bottom: 0px;
+                padding-left: 0px;
+            }
+             .team-card {
+                padding-top: 20px;
+                padding-right: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+             }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Blog<span>Vibe</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="trending.html">Trending</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html" class="active">Team</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-icon"><a href="#">🔍</a></div>
+        </div>
+    </header>
+
+    <main class="team-page-main">
+        <div class="container">
+            <section class="page-hero">
+                <h1>Meet Our Awesome Team</h1>
+                <p class="subtitle">The passionate individuals behind BlogVibe, dedicated to bringing you inspiring and informative content.</p>
+            </section>
+
+            <div class="team-grid">
+                <div class="team-card" id="member-utkarsh">
+                    <div class="card-image-placeholder">
+                         <img src="assets/utkarsh.png" alt="Utkarsh's Image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Utkarsh</h3>
+                        <p class="member-role">2nd Year CSE Student</p>
+                        <p class="member-details">Pursuing BE Degree from MSRIT</p>
+                        <span class="member-specialty">Web Developer</span>
+                    </div>
+                </div>
+
+                <div class="team-card" id="member-sanjay">
+                    <div class="card-image-placeholder">
+                        <img src="assets/sanjay.png" alt="Sanjay's Image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Sanjay</h3>
+                        <p class="member-role">2nd Year CSE Student</p>
+                        <p class="member-details">Pursuing BE Degree from MSRIT</p>
+                        <span class="member-specialty">Web Developer</span>
+                    </div>
+                </div>
+
+                <div class="team-card" id="member-chandini">
+                    <div class="card-image-placeholder">
+                         <img src="assets/Gemini_Generated_Image_19ksv719ksv719ks.png" alt="Chandini's Image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Chandini</h3>
+                        <p class="member-role">2nd Year CSE Student</p>
+                        <p class="member-details">Pursuing BE Degree from MSRIT</p>
+                        <span class="member-specialty">Web Developer</span>
+                    </div>
+                </div>
+
+                <div class="team-card" id="member-shashwat">
+                    <div class="card-image-placeholder">
+                        <img src="assets/shahwat.png" alt="Shashwat's Image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Shashwat</h3>
+                        <p class="member-role">2nd Year CSE Student</p>
+                        <p class="member-details">Pursuing BE Degree from MSRIT</p>
+                        <span class="member-specialty">Web Developer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">Blog<span>Vibe</span></a>
+                    <p>Discover compelling stories, expert insights, and fresh perspectives from our community of passionate writers. Join the conversation.</p>
+                    <div class="social-icons">
+                        <a href="#" title="Facebook">f</a> <a href="#" title="Twitter">t</a>
+                        <a href="#" title="LinkedIn">in</a> <a href="#" title="Email">✉</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="trending.html">Trending</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-categories">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#">Technology</a></li> <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Design</a></li> <li><a href="#">Business</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> BlogVibe. All rights reserved.</p>
+                <div> <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.from(".page-hero h1", { duration: 0.8, y: -50, opacity: 0, ease: "power2.out", delay: 0.2 });
+            gsap.from(".page-hero p.subtitle", { duration: 0.8, y: -30, opacity: 0, ease: "power2.out", delay: 0.4 });
+
+            gsap.to(".team-card", {
+                duration: 0.8,
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                ease: "elastic.out(1, 0.75)",
+                stagger: {
+                    each: 0.2,
+                    from: "start",
+                    grid: "auto"
+                },
+                delay: 0.6
+            });
+
+            const cards = document.querySelectorAll(".team-card");
+            cards.forEach(card => {
+                const imagePlaceholder = card.querySelector(".card-image-placeholder");
+                const name = card.querySelector(".member-name");
+                
+                card.addEventListener("mouseenter", () => {
+                    gsap.to(card, { 
+                        duration: 0.3, 
+                        scale: 1.05, 
+                        boxShadow: "0px 15px 35px rgba(0,0,0,0.12)",
+                        ease: "power2.out"
+                    });
+                    if (imagePlaceholder) {
+                        gsap.to(imagePlaceholder, {
+                            duration: 0.3,
+                            scale: 1.1,
+                            ease: "power2.out"
+                        });
+                    }
+                     gsap.to(name, {
+                        duration: 0.3,
+                        color: "#6B46C1",
+                        ease: "power2.out"
+                    });
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    gsap.to(card, { 
+                        duration: 0.3, 
+                        scale: 1, 
+                        boxShadow: "0px 8px 25px rgba(0,0,0,0.08)",
+                        ease: "power2.out"
+                    });
+                    if (imagePlaceholder) {
+                         gsap.to(imagePlaceholder, {
+                            duration: 0.3,
+                            scale: 1,
+                            ease: "power2.out"
+                        });
+                    }
+                    gsap.to(name, {
+                        duration: 0.3,
+                        color: "#5D3FD3",
+                        ease: "power2.out"
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BlogVibe</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.7;
+            color: #4A5568;
+            background-color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            padding-top: 0px;
+            padding-right: 20px;
+            padding-bottom: 0px;
+            padding-left: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5D3FD3;
+            transition-property: color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+        }
+
+        a:hover {
+            color: #4a2fa3;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 12px; /* Approx 0.75em for 16px base */
+            color: #2D3748;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 48px; /* Approx 3rem */
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px; /* Approx 2.25rem */
+        }
+
+        h3 {
+            font-size: 24px; /* Approx 1.5rem */
+            color: #4A5568;
+        }
+
+        p {
+            margin-bottom: 24px; /* Approx 1.5em */
+            color: #4A5568;
+            font-size: 17px; /* Approx 1.05rem */
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 0px;
+            padding-right: 0px;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 29px; /* Approx 1.8rem */
+            font-weight: bold;
+            color: #5D3FD3;
+        }
+
+        .logo span {
+            color: #2D3748;
+        }
+
+        .navbar nav ul {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar nav ul li {
+            margin-left: 30px;
+        }
+
+        .navbar nav ul li a {
+            color: #4A5568;
+            font-weight: 500;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 0px;
+            padding-right: 0px;
+            text-decoration: none;
+            display: block;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            transition-property: color, border-bottom-color;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+        }
+
+        .navbar nav ul li a:hover {
+            color: #5D3FD3;
+            border-bottom-color: #5D3FD3;
+        }
+
+        .navbar nav ul li a.active {
+            color: #5D3FD3;
+            font-weight: 700;
+            border-bottom-color: #5D3FD3;
+        }
+
+        .search-icon a {
+            font-size: 19px; /* Approx 1.2rem */
+            color: #4A5568;
+        }
+
+        .about-page-main {
+            flex-grow: 1;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .about-hero {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+            margin-bottom: 80px;
+            background-image: linear-gradient(135deg, #6B46C1 0%, #805AD5 100%);
+            color: #ffffff;
+            border-radius: 12px;
+            animation-name: fadeInHero;
+            animation-duration: 1s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            box-shadow: 0px 10px 30px rgba(93, 63, 211, 0.3);
+        }
+
+        .about-hero h1 {
+            color: #ffffff;
+            font-size: 56px; /* Approx 3.5rem */
+            margin-bottom: 7px; /* Approx 0.4em for 56px base, bit less for tighter look */
+        }
+
+        .about-hero p.subtitle {
+            font-size: 22px; /* Approx 1.35rem */
+            color: #e2e8f0;
+            max-width: 800px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 24px; /* Approx 1.5em */
+            margin-left: auto;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #5D3FD3;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition-property: background-color, color, transform;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #f7fafc;
+            color: #4a2fa3;
+            transform: translateY(-2px);
+        }
+
+        .about-content {
+            max-width: 960px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            padding-top: 0px;
+            padding-right: 20px;
+            padding-bottom: 0px;
+            padding-left: 20px;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation-name: fadeInSection;
+            animation-duration: 0.8s;
+            animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+            animation-fill-mode: forwards;
+            padding: 30px; /* Shorthand kept for simplicity */
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .content-section:nth-child(1) { animation-delay: 0.1s; }
+        .content-section:nth-child(2) { animation-delay: 0.25s; }
+        .content-section:nth-child(3) { animation-delay: 0.4s; }
+        .content-section:nth-child(4) { animation-delay: 0.55s; }
+
+        .about-content h2 {
+            color: #5D3FD3;
+            padding-bottom: 7px; /* Approx 0.4em for 32px base */
+            margin-bottom: 16px; /* Approx 1em for 32px base */
+            font-size: 32px; /* Approx 2rem */
+            text-align: left;
+        }
+
+        .content-section.text-center h2,
+        .content-section.text-center p {
+            text-align: center;
+        }
+
+        .content-section.text-center ul {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+        }
+
+        .about-content ul {
+            list-style-type: none;
+            padding-left: 0px;
+            margin-bottom: 25px; /* Approx 1.5em for 17px base */
+        }
+
+        .about-content ul li {
+            margin-bottom: 17px; /* Approx 1em for 17px base */
+            padding-left: 30px;
+            position: relative;
+            font-size: 17px; /* Approx 1.05rem */
+        }
+
+        .about-content ul li::before {
+            content: '✨';
+            color: #ED8936;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 19px; /* Approx 1.1em for 17px base */
+        }
+        
+        .section-with-image {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .section-with-image .text-content {
+            flex-grow: 1.2;
+            flex-shrink: 1; /* Default, good to have */
+            flex-basis: 0%; /* A common base for flex items */
+            min-width: 300px;
+        }
+
+        .section-with-image .image-content {
+            flex-grow: 0.8;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-with-image .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            transition-property: transform;
+            transition-duration: 0.4s;
+            transition-timing-function: ease-out;
+        }
+
+        .section-with-image .image-content img:hover {
+            transform: scale(1.03);
+        }
+
+        .section-with-image.image-left .image-content {
+            order: -1;
+        }
+
+        .footer {
+            background-color: #1A202C;
+            color: #A0AEC0;
+            padding-top: 60px;
+            padding-right: 0px;
+            padding-bottom: 20px;
+            padding-left: 0px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            /* For learner: explicit columns, then media queries */
+            grid-template-columns: 1fr 1fr 1fr; /* Assuming 3 columns initially */
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about .logo {
+            color: #ffffff;
+        }
+
+        .footer-about .logo span {
+            color: #718096;
+        }
+
+        .footer-about p {
+            font-size: 14px; /* Approx 0.9rem */
+            margin-top: 15px;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .social-icons a {
+            color: #A0AEC0;
+            margin-right: 18px;
+            font-size: 24px; /* Approx 1.5rem */
+            transition-property: color, transform;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+        }
+        .social-icons a:last-child { /* Remove margin from the last icon */
+            margin-right: 0px;
+        }
+
+        .social-icons a:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .footer h4 {
+            font-size: 18px; /* Approx 1.1rem */
+            margin-bottom: 16px; /* Approx 1em */
+            color: #CBD5E0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links ul li,
+        .footer-categories ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a,
+        .footer-categories ul li a {
+            color: #A0AEC0;
+            font-size: 15px; /* Approx 0.95rem */
+            transition-property: color, padding-left;
+            transition-duration: 0.2s;
+            transition-timing-function: ease;
+        }
+
+        .footer-links ul li a:hover,
+        .footer-categories ul li a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #2D3748;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px; /* Approx 0.875rem */
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0px;
+        }
+
+        .footer-bottom div a {
+            margin-left: 25px;
+            color: #A0AEC0;
+        }
+
+        .footer-bottom div a:hover {
+            color: #ffffff;
+        }
+
+        @keyframes fadeInHero {
+            from { opacity: 0; transform: translateY(-20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0px) scale(1); }
+        }
+
+        @keyframes fadeInSection {
+            from { opacity: 0; transform: translateY(50px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0px) scale(1); }
+        }
+
+        @media (max-width: 992px) {
+            .section-with-image {
+                gap: 30px;
+            }
+            .footer-grid { /* For tablets, maybe 2 columns */
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+            }
+            .navbar nav {
+                margin-top: 15px;
+            }
+            .navbar nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .navbar nav ul li {
+                margin-top: 5px;
+                margin-right: 12px;
+                margin-bottom: 5px;
+                margin-left: 12px;
+            }
+            h1 {
+                font-size: 40px; /* Approx 2.5rem */
+            }
+            .about-hero {
+                padding-top: 60px;
+                padding-right: 15px;
+                padding-bottom: 60px;
+                padding-left: 15px;
+                margin-bottom: 60px;
+            }
+            .about-hero h1 {
+                font-size: 45px; /* Approx 2.8rem */
+            }
+            .about-hero p.subtitle {
+                font-size: 18px; /* Approx 1.15rem */
+            }
+            .about-content h2 {
+                font-size: 29px; /* Approx 1.8rem */
+            }
+            .section-with-image .text-content,
+            .section-with-image .image-content {
+                flex-basis: 100%;
+                min-width: auto; /* Simpler than unset for noobie */
+            }
+            .section-with-image.image-left .image-content {
+                order: 0;
+            }
+            .section-with-image .image-content {
+                margin-bottom: 20px;
+            }
+            .footer-grid { /* For mobile, 1 column */
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-about p,
+            .social-icons {
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-bottom div {
+                margin-top: 15px;
+            }
+            .footer-bottom div a {
+                margin-top: 0px;
+                margin-right: 12px;
+                margin-bottom: 0px;
+                margin-left: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Blog<span>Vibe</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="trending.html">Trending</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-icon"><a href="#">&#128269;</a></div>
+        </div>
+    </header>
+
+    <main class="about-page-main">
+        <section class="about-hero">
+            <h1>Welcome to <span class="highlight">BlogVibe</span></h1>
+            <p class="subtitle">We believe in the power of stories to connect, inspire, and transform. Dive into a world of insightful articles and discover perspectives that resonate.</p>
+            <a href="blog.html" class="cta-button">Explore Our Blog</a>
+        </section>
+
+        <div class="container about-content">
+            <section class="content-section section-with-image image-left" id="mission">
+                <div class="text-content">
+                    <h2>Our Mission</h2>
+                    <p>At BlogVibe, our mission is to be a beacon for thoughtful content. We strive to create a welcoming platform where diverse voices converge, sharing stories and insights that spark curiosity, foster understanding, and encourage personal growth. We're dedicated to quality, authenticity, and the simple joy of a good read.</p>
+                </div>
+                <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YmxvZ2dpbmclMjBpbnNwaXJhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Inspiring workspace with a journal and plants">
+                </div>
+            </section>
+
+            <section class="content-section text-center" id="what-we-do">
+                <h2>What We Offer</h2>
+                <p style="max-width: 700px; margin-left: auto; margin-right:auto;">BlogVibe is your destination for a rich variety of engaging content. We are passionate about exploring:</p>
+                <ul>
+                    <li><strong>Thoughtful Technology:</strong> Unpacking innovations and their human impact.</li>
+                    <li><strong>Enriched Lifestyles:</strong> Tips and tales for well-being and personal development.</li>
+                    <li><strong>Creative Designs:</strong> Celebrating the art of visual storytelling and innovation.</li>
+                    <li><strong>Insightful Business:</strong> Navigating the world of entrepreneurship and professional growth.</li>
+                    <li><strong>And So Much More:</strong> Our curiosity knows no bounds!</li>
+                </ul>
+                <p style="max-width: 700px; margin-left: auto; margin-right:auto;">Each article is crafted to provide value, ignite your imagination, and foster meaningful connections.</p>
+            </section>
+
+            <section class="content-section section-with-image" id="community">
+                <div class="text-content">
+                    <h2>Our Vibrant Community</h2>
+                    <p>BlogVibe thrives because of its community. We bring together talented writers from all walks of life—experts, storytellers, and emerging voices—each sharing their unique light. Our readers are curious, engaged individuals eager to explore new ideas and perspectives.</p>
+                    <p>We champion an interactive experience, where comments, shares, and discussions help us all learn and grow together. You're not just reading; you're part of the Vibe.</p>
+                </div>
+                 <div class="image-content">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGl2ZXJzZSUyMHRlYW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=80" alt="Diverse group of people collaborating warmly">
+                </div>
+            </section>
+
+            <section class="content-section text-center" id="join-us">
+                 <div class="text-content">
+                    <h2>Why Choose BlogVibe?</h2>
+                    <p style="max-width: 700px; margin-left: auto; margin-right:auto;">In a fast-paced digital world, we offer a sanctuary for thoughtful reading and genuine connection. Here’s what makes us special:</p>
+                    <ul>
+                        <li><strong>Curated Quality:</strong> Well-crafted articles that inform, inspire, and entertain.</li>
+                        <li><strong>Authentic Voices:</strong> A platform for diverse perspectives and heartfelt stories.</li>
+                        <li><strong>Engaging Experience:</strong> A clean, welcoming space designed for discovery and interaction.</li>
+                    </ul>
+                    <p style="max-width: 700px; margin-left: auto; margin-right:auto;">We're delighted to have you here. Dive in, explore, and let the Vibe inspire you!</p>
+                 </div>
+                 <a href="blog.html" class="cta-button" style="margin-top: 20px; display: block; width: fit-content; margin-left:auto; margin-right:auto;">Start Reading Now</a>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">Blog<span>Vibe</span></a>
+                    <p>Discover compelling stories, expert insights, and fresh perspectives from our community of passionate writers. Join the conversation.</p>
+                    <div class="social-icons">
+                        <a href="#" title="Facebook">f</a> <a href="#" title="Twitter">t</a>
+                        <a href="#" title="LinkedIn">in</a> <a href="#" title="Email">✉</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="trending.html">Trending</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-categories">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#">Technology</a></li> <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Design</a></li> <li><a href="#">Business</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> BlogVibe. All rights reserved.</p>
+                <div> <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

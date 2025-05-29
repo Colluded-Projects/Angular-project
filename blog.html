@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="blogVibeApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ logo.textPart1 + logo.textPart2 }} - Blog</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="blog-style.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-sanitize.min.js"></script>
+    <script src="app.js"></script> 
+    <script src="blog-controller.js"></script> 
+</head>
+<body ng-controller="BlogController">
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">{{ logo.textPart1 }}<span>{{ logo.textPart2 }}</span></a>
+            <nav>
+                <ul>
+                    <li ng-repeat="item in navItems">
+                        <a ng-href="{{ item.link }}" ng-class="{ 'active': item.id === activePageId }">{{ item.name }}</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="search-icon"><a href="#">&#128269;</a></div>
+        </div>
+    </header>
+
+    <main class="blog-page container">
+        <div> 
+            <section class="blog-header">
+                <h1>{{ pageTitle }}</h1>
+                <p class="subtitle">{{ pageSubtitle }}</p>
+            </section>
+
+            <section class="blog-filters-toolbar">
+                <div class="filter-buttons">
+                    <button ng-repeat="category in categories"
+                            ng-click="filterByCategory(category)"
+                            ng-class="{ 'active': selectedCategory === category }">
+                        {{ category }}
+                    </button>
+                </div>
+                <div class="sort-dropdown">
+                    <label for="sort">Sort by:</label>
+                    <select id="sort" ng-model="selectedSort" ng-options="option for option in sortOptions">
+                    </select>
+                </div>
+            </section>
+
+            <div class="blog-layout">
+                <section class="blog-posts-list">
+                    <div class="article-card blog-page-card" ng-repeat="post in paginatedPosts()">
+                        <span class="category-tag article-page-tag">{{ post.category }}</span>
+                        <img ng-src="{{ post.image }}" alt="{{ post.title }}" class="blog-card-image">
+                        <div class="article-content">
+                            <h3 ng-click="openPost(post.id)" class="clickable-title">{{ post.title }}</h3>
+                            <p>{{ post.description }}</p> 
+                            <div class="article-meta blog-page-meta">
+                                <span>{{ post.author }}</span>
+                                <span>{{ post.date }}</span>
+                                <span><i class="views-icon">&#128065;</i> {{ post.views }}</span>
+                                <span>{{ post.readTime }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav class="pagination" ng-if="totalPages() > 1 && paginatedPosts().length > 0">
+                        <ul>
+                            <li><button ng-disabled="currentPage === 1" ng-click="setCurrentPage(currentPage - 1)">Previous</button></li>
+                            <li ng-repeat="page in getPages()">
+                                <button ng-class="{'active': currentPage === page}" ng-click="setCurrentPage(page)">{{ page }}</button>
+                            </li>
+                            <li><button ng-disabled="currentPage === totalPages()" ng-click="setCurrentPage(currentPage + 1)">Next</button></li>
+                        </ul>
+                    </nav>
+                    <div ng-if="paginatedPosts().length === 0 && filteredPosts.length > 0" class="no-posts-message">
+                        No more posts on this page.
+                    </div>
+                     <div ng-if="filteredPosts.length === 0" class="no-posts-message">
+                        No posts found for "{{selectedCategory}}" category.
+                    </div>
+                </section>
+
+                <aside class="blog-sidebar">
+                     <div class="sidebar-widget">
+                        <h4>Recent Posts</h4>
+                        <ul>
+                            <li ng-repeat="recent in sidebar.recentPosts" ng-click="openPost(recent.id)" class="recent-post-item">
+                                <a href="#">{{ recent.title }}</a>
+                                <span>{{ recent.date }} &bull; <i class="views-icon">&#128065;</i> {{ recent.views }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li ng-repeat="cat in sidebar.categories" ng-click="filterByCategory(cat.name)" class="category-item">
+                                <a href="#">{{ cat.name }}</a>
+                                <span>{{ cat.count }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h4>Popular Tags</h4>
+                        <div class="popular-tags">
+                            <span ng-repeat="tag in sidebar.popularTags" class="tag-chip" ng-click="filterByCategory(tag)">{{ tag }}</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">{{ logo.textPart1 }}<span>{{ logo.textPart2 }}</span></a>
+                    <p>{{ footer.description }}</p>
+                    <div class="social-icons">
+                        <a ng-href="{{icon.link}}" ng-repeat="icon in footer.socialMediaLinks" title="{{icon.name}}">{{ icon.char }}</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>{{ footer.quickLinks.title }}</h4>
+                    <ul>
+                        <li ng-repeat="link in footer.quickLinks.links"><a ng-href="{{ link.href }}">{{ link.name }}</a></li>
+                    </ul>
+                </div>
+                <div class="footer-categories">
+                    <h4>{{ footer.categoriesLinks.title }}</h4>
+                    <ul>
+                        <li ng-repeat="category in footer.categoriesLinks.items"><a href="#">{{ category }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span ng-bind="currentYear"></span> {{ logo.textPart1 }}{{ logo.textPart2 }}. All rights reserved.</p>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
