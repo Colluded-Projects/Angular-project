@@ -202,8 +202,7 @@ angular.module('blogVibeApp') // Assumes 'blogVibeApp' is defined in app.js and 
         quickLinks: {
             title: "Quick Links",
             links: [
-                { name: "About Us", href: "about.html" }, { name: "Blog", href: "blog.html" },
-                { name: "Trending", href: "trending.html" }, { name: "Contact", href: "contact.html" }
+                { name: "About Us", href: "about.html" }, { name: "Blog", href: "blog.html" }, { name: "Contact", href: "contact.html" }
             ]
         },
         categoriesLinks: {
